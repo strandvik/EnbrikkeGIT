@@ -1,0 +1,20 @@
+CC     = g++
+OPT    = -O3
+DEBUG  = -g
+OTHER  = -Wno-deprecated -fpermissive
+CFLAGS = $(OPT) $(OTHER)
+# CFLAGS = $(DEBUG) $(OTHER)
+
+MODULE = run
+OBJS = $(SRCS:.cpp=.o)
+
+all: run.x
+
+
+ifneq (, $(realpath ~/systemc/Makefile.defs))
+include ~/systemc/Makefile.defs
+else ifneq (, $(realpath ../Makefile.defs))
+include ../Makefile.defs
+else
+$(error "Cannot find Makefile.defs")
+endif

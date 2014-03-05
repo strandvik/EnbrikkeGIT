@@ -1,0 +1,187 @@
+/* -*- mode: c++ -*-
+**
+** topp.cpp
+**
+** top level instatiations and simulation control
+** 
+** Made by Kjetil Svarstad
+** 
+*/
+
+
+#include <systemc.h>
+
+#include "if.h"
+#include "button.h"
+#include "control.h"
+const sc_time busdelay (10, SC_MS);
+
+// The Bus system
+class Bus : public sc_channel, public bus_push_if, public bus_light_if{
+public:
+  	Bus (sc_module_name name) : sc_channel (name) {	
+	}
+	//Ports that connects from the bus to 10 buttons and one control interface.
+	sc_port<Button_if,10> button[10];
+	sc_port<Control_if> controlport;
+
+	//Function used by the button-module to tell the CTRL-module that it has been pushed.
+
+	void pushed (int id){
+		wait(busdelay);
+		controlport->pushed(id);					
+	}
+	//Function used by the CTRL-module to set (or clear) the lights in button "id".
+	void lights(bool lightStat, int id){  
+		
+		wait(busdelay);
+		button[id]->lights(lightStat);
+	}
+private:
+	sc_mutex bus_access;
+
+};
+
+class top : public sc_module {
+public:
+  	//instances ...
+	Button B_inst_Start;
+	Button B_inst1;
+	Button B_inst2;
+	Button B_inst3;
+	Button B_inst4;
+	Button B_inst5;
+	Button B_inst6;
+	Button B_inst7;
+	Button B_inst8;
+	Button B_inst9;
+	Bus bus_inst;
+	Control control_inst;
+	virtual void testbed();
+	virtual void finger(int);
+  	top (sc_module_name name) : sc_module (name) ,
+    		B_inst_Start("Start Button", 0),
+		B_inst1("B1",1),
+		B_inst2("B2",2),
+		B_inst3("B3",3),
+		B_inst4("B4",4),
+		B_inst5("B5",5),
+		B_inst6("B6",6),
+		B_inst7("B7",7),
+		B_inst8("B8",8),
+		B_inst9("B9",9),
+		control_inst("Control"),
+		bus_inst("Bus")
+	{
+		B_inst_Start.buttonOutPort(bus_inst);
+		B_inst1.buttonOutPort(bus_inst);
+		B_inst2.buttonOutPort(bus_inst);
+		B_inst3.buttonOutPort(bus_inst);
+		B_inst4.buttonOutPort(bus_inst);
+		B_inst5.buttonOutPort(bus_inst);
+		B_inst6.buttonOutPort(bus_inst);
+		B_inst7.buttonOutPort(bus_inst);
+		B_inst8.buttonOutPort(bus_inst);
+		B_inst9.buttonOutPort(bus_inst);
+		
+		bus_inst.button[0](B_inst_Start);
+		bus_inst.button[1](B_inst1);
+		bus_inst.button[2](B_inst2);
+		bus_inst.button[3](B_inst3);
+		bus_inst.button[4](B_inst4);
+		bus_inst.button[5](B_inst5);
+		bus_inst.button[6](B_inst6);
+		bus_inst.button[7](B_inst7);
+		bus_inst.button[8](B_inst8);
+		bus_inst.button[9](B_inst9);
+		
+		control_inst.controlOutPort(bus_inst);
+		bus_inst.controlport(control_inst);
+		SC_HAS_PROCESS(top);		
+		SC_THREAD(testbed);			
+	}	
+	};
+
+void top::testbed(){
+	while(true){
+		wait(long_time);
+		cout << "Testbed started... " << endl;
+		wait(long_time);
+		finger(0);
+		wait(long_time);
+		finger(3);
+		finger(4);
+		finger(1);
+		finger(9);
+		finger(6);
+		finger(8);
+		finger(7);
+		finger(2);
+		finger(5);
+		sc_stop ();	
+	}
+}
+void top::finger(int btn){
+	if (btn == 0){
+		wait(short_time);
+		B_inst_Start.PUSH = true;
+		wait(short_time);
+		B_inst_Start.PUSH = false;
+		wait(long_time);
+	}else if (btn == 1){
+		B_inst1.PUSH = true;
+		wait(short_time);
+		B_inst1.PUSH = false;
+		wait(long_time);	
+	}else if (btn == 2){
+		B_inst2.PUSH = true;
+		wait(short_time);
+		B_inst2.PUSH = false;
+		wait(long_time);	
+	}else if (btn == 3){
+		B_inst3.PUSH = true;
+		wait(short_time);
+		B_inst3.PUSH = false;
+		wait(long_time);	
+	}else if (btn == 4){
+		B_inst4.PUSH = true;
+		wait(short_time);
+		B_inst4.PUSH = false;
+		wait(long_time);	
+	}else if (btn == 5){
+		B_inst5.PUSH = true;
+		wait(short_time);
+		B_inst5.PUSH = false;
+		wait(long_time);	
+	}else if (btn == 6){
+		B_inst6.PUSH = true;
+		wait(short_time);
+		B_inst6.PUSH = false;
+		wait(long_time);	
+	}else if (btn == 7){
+		B_inst7.PUSH = true;
+		wait(short_time);
+		B_inst7.PUSH = false;
+		wait(long_time);	
+	}else if (btn == 8){
+		B_inst8.PUSH = true;
+		wait(short_time);
+		B_inst8.PUSH = false;
+		wait(long_time);	
+	}else if (btn == 9){
+		B_inst9.PUSH = true;
+		wait(short_time);
+		B_inst9.PUSH = false;
+		wait(long_time);		
+	}
+}
+
+int sc_main (int argc , char *argv[])  {
+  	// instantiate top
+	top top1("Top1");
+  	// tracing of signals ...
+
+  	// sc_start
+  	sc_start ();
+	  return 0;
+};
