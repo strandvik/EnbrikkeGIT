@@ -1,8 +1,5 @@
 /* -*- mode: c++ -*-
 ** control.h
-** 
-** Made by Kjetil Svarstad
-** 
 */
 
 #ifndef   	CONTROL_H_
@@ -26,7 +23,6 @@ private:
 	static int nextnumber;
   	static const int X[9];
 	sc_mutex control_access;
-
 };
 
 

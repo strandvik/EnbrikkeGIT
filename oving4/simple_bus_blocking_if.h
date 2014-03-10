@@ -46,10 +46,10 @@ class simple_bus_blocking_if
 public:
   // blocking BUS interface
   virtual simple_bus_status burst_read(unsigned int unique_priority
-				       , int *data
-				       , unsigned int start_address
-				       , unsigned int length = 1
-				       , bool lock = false) = 0;
+				  , int *data
+				  , unsigned int start_address
+				  , unsigned int length = 1
+				  , bool lock = false) = 0;
   virtual simple_bus_status burst_write(unsigned int unique_priority
 					, int *data
 					, unsigned int start_address

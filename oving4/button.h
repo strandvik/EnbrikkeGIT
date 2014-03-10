@@ -1,18 +1,15 @@
 /* -*- mode: c++ -*-
-** button.h
-** 
-** Made by Kjetil Svarstad
-** 
-*/
+** button.h*/
 
 #ifndef   	BUTTON_H_
 # define   	BUTTON_H_
 
 #include <systemc.h>
-
 #include "if.h"
+
 const sc_time long_time (100, SC_MS);
 const sc_time short_time (30, SC_MS);
+
 //  Our beloved button class (changes are done)
 class Button : public sc_module, public Button_if{
 public:

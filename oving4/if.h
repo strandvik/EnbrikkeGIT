@@ -1,8 +1,5 @@
 /* -*- mode: c++ -*-
-** if.h
-** 
-** Made by Kjetil Svarstad
-**
+
 ** All interfaces collected here
 */
 
