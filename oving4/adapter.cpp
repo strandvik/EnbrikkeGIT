@@ -1,6 +1,7 @@
 #include "adapter.h"
-#define maxMemAdr 0x3FF
-#define freeloc 0x00
+
+#define freeloc 0x002C
+#define maxMemAdr 0x102C
 
 Adapter::Adapter(sc_module_name name, int addr) : sc_module(name){
 	address = addr;
@@ -19,5 +20,10 @@ void Adapter::pushed(int id){
 void Adapter::send(int id, int status){
 	int packet[3] = {3, id, status};
 	int nextFreeAddress;
-	adapterToBusPort->burst_read(id, &nextFreeAddress, freeloc, 1, true);
+	adapterToBusPort->burst_read(id, &nextFreeAddress, freeloc, 1, false);
+
+	adapterToBusPort->burst_write(id, packet, nextFreeAddress, 3, false);
+
+	nextFreeAddress += 3 * 4; //incrementing 
+ 
 }
