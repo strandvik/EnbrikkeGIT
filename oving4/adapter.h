@@ -19,7 +19,7 @@ class Adapter : public sc_module, public simple_bus_slave_if, public bus_push_if
 public:
   	Adapter (sc_module_name name, int _id);
 	sc_port<button_if> adapterToButtonPort;
-	sc_port<simple_bus_blocking_if> adapterToBus;
+	sc_port<simple_bus_blocking_if> adapterToBusPort;
 	void pushed(int);
 	int id;
 	int address;
