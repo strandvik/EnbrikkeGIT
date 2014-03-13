@@ -6,6 +6,8 @@
 #ifndef   	IF_H_
 # define   	IF_H_
 
+const sc_time ns (1, SC_NS);
+const sc_time ms (1, SC_MS);
 // Interface for Button
 class Button_if:  virtual public sc_interface {
 	public:

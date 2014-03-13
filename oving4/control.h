@@ -5,20 +5,27 @@
 #ifndef   	CONTROL_H_
 # define   	CONTROL_H_
 
-#include <systemc.h>
+#ifndef CONTROL_ADDRESS
+#define CONTROL_ADDRESS 0x0000
+#endif
 
+#ifndef BUTTON_ADDR
+#define BUTTON_ADDR 0x0004
+#endif
+
+#include <systemc.h>
+#include "simple_bus_direct_if.h"
 #include "if.h"
-const sc_time ctrl_delay (20, SC_MS);
-const sc_time ctrl_mutex_delay (16, SC_MS);
+
 //  Our beloved control class (changes made)
-class Control : public sc_module, public Control_if
-{
+class Control : public sc_module, public simple_bus_direct_if, public simple_bus_blocking_if{
 public:
   	Control (sc_module_name);
-	sc_port<bus_light_if> controlOutPort;
+	sc_port<simple_bus_direct_if> controlOutPort;
 	virtual void pushed(int);
 	virtual void clearButtonLights();
-
+	virtual void main();
+	virtual void lights(int, bool);
 private:
 	static int nextnumber;
   	static const int X[9];

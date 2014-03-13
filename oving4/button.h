@@ -9,8 +9,7 @@
 
 const sc_time long_time (100, SC_MS);
 const sc_time short_time (30, SC_MS);
-const sc_time ns (1, SC_NS);
-const sc_time ms (1, SC_MS);
+
 
 //  Our beloved button class (changes are done)
 class Button : public sc_module, public Button_if{
