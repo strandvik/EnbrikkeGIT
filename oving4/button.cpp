@@ -26,7 +26,7 @@ void Button::main(){
 		if(PUSH == true){
 		pushtime = sc_time_stamp();
 		cout << id << " Was pushed";
-		buttonOutPort->pushed(id);
+		buttonToAdapterPort->pushed(id);
 		}
 	}
 }

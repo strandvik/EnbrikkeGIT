@@ -3,8 +3,10 @@
 #define FREELOC 0x002C
 #define MAX_MEM_ADR 0x102C
 
-Adapter::Adapter(sc_module_name name, int addr) : sc_module(name){
-	address = addr;
+Adapter::Adapter(sc_module_name name, int _id, int _start_addr) : sc_module(name){
+	id = _id;
+	start_addr = _start_addr;
+	//end_addr = _end_addr;
 }
 
 // Gets called by the Button when it is pushed.
@@ -33,4 +35,32 @@ void Adapter::send(int id, int status){
 	adapterToBusPort->burst_write(id, &nextFreeAddress, FREELOC, 1, true); //updating the next address in FREELOC
 	adapterToBusPort -> burst_write(id, packet, 0x0000, 1, false); //sending to the Control-register.
 }
-	
+
+
+
+//Functionality for handling read and write calls, and addressing.
+simple_bus_status Adapter::read(int *data, unsigned int address)
+{
+	return SIMPLE_BUS_OK;
+}
+simple_bus_status Adapter::write(int *data, unsigned int address){
+	if(*data){//if not zero
+		adapterToButtonPort->lights(true);
+	}else{
+		adapterToButtonPort->lights(false);
+	}
+	return SIMPLE_BUS_OK;
+}
+bool Adapter::direct_read(int *data, unsigned int address){
+	return true;
+}
+bool Adapter::direct_write(int *data, unsigned int address){
+	write(data,address);
+	return true;
+}
+unsigned int Adapter::start_address() const {
+    return start_addr;
+}
+unsigned int Adapter::end_address() const {
+    return start_addr+3;
+}

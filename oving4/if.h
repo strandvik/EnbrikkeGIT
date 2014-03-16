@@ -20,6 +20,12 @@ class Control_if: virtual public sc_interface {
 		virtual void pushed(int) = 0;				
 };
 
+class Adapter_if: virtual public sc_interface {
+	public:
+		virtual void pushed(int) = 0;
+	
+};
+
 // Proxy-interface for Bus to Button
 class bus_push_if: virtual public sc_interface {
 	public:
