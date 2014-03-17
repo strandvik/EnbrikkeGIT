@@ -1,0 +1,85 @@
+commit e3bf88d7eac003e9294da7be941ae7cb882f435a
+Author: ingebart <ingenbrigt_bartholsen@hotmail.com>
+Date:   Tue Mar 11 14:01:54 2014 +0100
+
+    adapter added
+
+commit f9b76b3cc2a04260d01170eced453411e6b0d0d0
+Author: ingebart <ingenbrigt_bartholsen@hotmail.com>
+Date:   Mon Mar 10 14:15:27 2014 +0100
+
+    Ingebrigts fix
+
+commit 255f91cde831e0f5d4adb4e03a1794ecb8aee9da
+Merge: c593e73 62cd9de
+Author: Erlend <e.strandvik@gmail.com>
+Date:   Thu Mar 6 11:19:08 2014 +0100
+
+    Merge branch 'master' of github.com:strandvik/EnbrikkeGIT
+
+commit c593e7359e9aa8906c0c815411236dabd91a724d
+Author: Erlend <e.strandvik@gmail.com>
+Date:   Thu Mar 6 11:18:34 2014 +0100
+
+    Lagt til top.cpp, og sørget for at alt maker
+
+commit 62cd9de7bc646866bd872ce2a3ecceef9a96c1f9
+Author: ingebart <ingenbrigt_bartholsen@hotmail.com>
+Date:   Thu Mar 6 11:14:02 2014 +0100
+
+    test
+
+commit 9e7393ee9d21e7a0997268631fb4fc19d6eac749
+Author: Erlend <e.strandvik@gmail.com>
+Date:   Thu Mar 6 11:11:25 2014 +0100
+
+    lagt til filer fra ex.2
+
+commit 120ef39281932b29d478c40bb6a8f6ca4990be54
+Merge: a199461 841bd14
+Author: Erlend <e.strandvik@gmail.com>
+Date:   Thu Mar 6 11:00:11 2014 +0100
+
+    Merge branch 'master' of github.com:strandvik/EnbrikkeGIT
+
+commit a1994611761583188b4ab520af0e458e6038ae19
+Author: Erlend <e.strandvik@gmail.com>
+Date:   Thu Mar 6 10:59:48 2014 +0100
+
+    Ok
+
+commit 841bd140e66e2f20a3130715ceef587c95eb521b
+Author: ingebart <ingenbrigt_bartholsen@hotmail.com>
+Date:   Thu Mar 6 10:58:27 2014 +0100
+
+    Makefile IB
+
+commit 2868c5d0adf46c1b8a1f833da249a4bcf1f49a04
+Author: ingebart <ingenbrigt_bartholsen@hotmail.com>
+Date:   Thu Mar 6 10:57:26 2014 +0100
+
+    Ingebrigt3
+
+commit 2b0f4a4889d578baa964047ba44b9e95f426c903
+Author: ingebart <ingenbrigt_bartholsen@hotmail.com>
+Date:   Thu Mar 6 10:56:31 2014 +0100
+
+    Ingebrigt2
+
+commit df2f319b910aa9d83de210433eb8fa311b5e7bf7
+Author: ingebart <ingenbrigt_bartholsen@hotmail.com>
+Date:   Thu Mar 6 10:29:57 2014 +0100
+
+    Ingebrigts første comitt
+
+commit 268c84e6f6c147b3ea7a649714af6f2adfec8320
+Author: Erlend <e.strandvik@gmail.com>
+Date:   Wed Mar 5 14:21:28 2014 +0100
+
+    Lagt alle øvinger i git
+
+commit fbecfff8082aa92c0b76bf229a7192aa2537b993
+Author: strandvik <e.strandvik@gmail.com>
+Date:   Wed Mar 5 05:16:44 2014 -0800
+
+    Initial commit

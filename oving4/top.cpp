@@ -18,6 +18,7 @@ public:
 	simple_bus *bus;
 	simple_bus_fast_mem *FastMem;
 	simple_bus_arbiter *arbit;
+
 	sc_clock C1;
 
 	char namebufbut[40];
@@ -33,15 +34,15 @@ public:
 		ctrlunit = new Control("Controlunit", 0x0000, 0x0003);
 		arbit = new simple_bus_arbiter("Arbiter");
 		
-		cout << "Creating ports" << endl;
-		bus->clock(C1);
-		cout << "Clock ok" << endl;
-		bus->arbiter_port(*arbit);
-		cout << "Arbiter ok" << endl;
-	  	bus->slave_port(*FastMem);
-	  	cout << "Fastmem ok" << endl;
-	  	ctrlunit->controlOutPort(*bus);
-	  	bus->slave_port(*ctrlunit);
+		// cout << "Creating ports" << endl;
+		// bus->clock(C1);
+		// cout << "Clock ok" << endl;
+		// bus->arbiter_port(*arbit);
+		// cout << "Arbiter ok" << endl;
+	 //  	bus->slave_port(*FastMem);
+	 //  	cout << "Fastmem ok" << endl;
+	 //  	ctrlunit->controlOutPort(*bus);
+	  //	bus->slave_port(*ctrlunit);
 	  	
 
 	  	cout << "Making buttons" << endl;
