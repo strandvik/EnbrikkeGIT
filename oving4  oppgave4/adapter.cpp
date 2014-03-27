@@ -3,7 +3,6 @@
 #define FREELOC 0x002C
 #define MAX_MEM_ADR 0x102C
 
-const sc_time Tr (1, SC_US);
 Adapter::Adapter(sc_module_name name, int _id, int _start_addr) : sc_module(name){
 	id = _id;
 	start_addr = _start_addr;
@@ -12,7 +11,7 @@ Adapter::Adapter(sc_module_name name, int _id, int _start_addr) : sc_module(name
 // Gets called by the Button when it is pushed.
 void Adapter::pushed(int id){	
 		send(id, 1);
-		wait(ns);
+		wait(100*ms);
 		send(id, 0);	
 }
 
@@ -20,21 +19,11 @@ void Adapter::pushed(int id){
 // 1 with the size, 1 with id and one with the status.
 void Adapter::send(int id, int status){
 	int *packet;
-	if(status == 1){
-		packet = new int[3];
-		packet[0] = 3;
-		packet[1] = id;
-		packet[2] = status;
-	}else if(status == 0) { 
-		int size = rand()%18+3; //choosing random size between 3 and 20
-		packet = new int[size]; //creating packet of the random size
-		packet[0] = size;
-		packet[1] = id;
-		packet[2] = 0;
-		int randtime = (rand()%4)+1; //making a random number between 1 and 4 to multiply Tr
-		wait(Tr*randtime);
-	}
-	
+	packet = new int[3];
+	packet[0] = 3;
+	packet[1] = id;
+	packet[2] = status;
+
 	adapterToBusPort->burst_read(id, &nextFreeAddress, FREELOC, 1, false);
 	if (nextFreeAddress <= FREELOC)
 		nextFreeAddress = FREELOC +  4; //First possible address
