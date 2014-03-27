@@ -6,16 +6,14 @@ OTHER  = -Wno-deprecated -fpermissive
 CFLAGS = $(DEBUG) $(OTHER)
 
 MODULE = run
-SRCS = button.cpp control.cpp top.cpp
+SRCS = statemachine.cpp top.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: run.x
 
-button.o: if.h button.h button.cpp
+statemachine.o: if.h statemachine.h statemachine.cpp
 
-control.o: if.h control.h control.cpp
-
-topp.o: button.h control.h top.cpp
+topp.o: if.h statemachine.h top.cpp
 
 ifneq (, $(realpath $(HOME)/systemc/Makefile.defs))
 include ~/systemc/Makefile.defs
