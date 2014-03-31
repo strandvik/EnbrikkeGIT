@@ -13,7 +13,10 @@ FSM::FSM(sc_module_name name, int _limit) : sc_module(name){
 
 void FSM::fsm_functionality() {
 	while(1){
-		int A = portA;
+		
+		unsigned char portReadA = portA.read();
+		int A = portReadA;
+		cout << "Reading port A to be " << portReadA << " converted to int " << A << endl;
 		switch(CurrentState){
 			case S0:
 				cout << "In state S0. " << endl;
@@ -26,6 +29,7 @@ void FSM::fsm_functionality() {
 			break;
 			case S1:
 				cout << "In state S1. " << endl;
+				cout << "Evaluating " << A << " against limit " << limit << endl;
 				if(A < limit){
 					NextState = S0;
 				}else{

@@ -32,7 +32,7 @@ top (sc_module_name name) : sc_module (name), clk("Clk", period){
 void top::testbed(){
 	while(1){
 		int intA = rand()%256;
-		char charA = intA;
+		unsigned char charA = intA;
 		Aout.write(charA);
 		
 		cout << "Writing " << charA << " to Aout, or " << intA << " in int." << endl;
