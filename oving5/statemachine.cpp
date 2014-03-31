@@ -17,6 +17,7 @@ void FSM::fsm_functionality() {
 		switch(CurrentState){
 			case S0:
 				cout << "In state S0. " << endl;
+				cout << "Evaluating " << A << " against limit " << limit << endl;
 				if(A >= limit){
 					NextState = S1;
 				}else{

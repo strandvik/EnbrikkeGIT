@@ -34,21 +34,20 @@ void top::testbed(){
 		int intA = rand()%256;
 		char charA = intA;
 		Aout.write(charA);
-		wait();
+		
 		cout << "Writing " << charA << " to Aout, or " << intA << " in int." << endl;
 		if(Xin != Xinput){ 
 			Xcount++;
 			cout << "X was outputted " << Xin << ", " << Xcount << " number of times" << endl;
 		}
 		Xinput = Xin;
-
+		wait();
 	}
 }
 
 int sc_main (int argc , char *argv[])  {
 	srand(time(NULL));
 	top top1("Top1");
-	//sc_clock clk("clk", 10, SC_NS);
 
   	
   	sc_start ();
