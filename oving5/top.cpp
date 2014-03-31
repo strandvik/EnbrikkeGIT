@@ -5,11 +5,11 @@
 
 const sc_time period (10, SC_NS);
 class top : public sc_module{
-
+public:
 FSM *fsm;
 sc_clock clk;
-sc_out<char> Aout;
-sc_in<bool> Xin;
+sc_signal<char> Aout;
+sc_signal<bool> Xin;
 
 //char sendA;
 void testbed();
@@ -19,6 +19,7 @@ top (sc_module_name name) : sc_module (name), clk("Clk", period){
 	fsm->tick(clk);
 	fsm->A(Aout);
 	fsm->X(Xin);
+
 	SC_HAS_PROCESS(top);
 	SC_THREAD(testbed);
 }
@@ -27,16 +28,15 @@ top (sc_module_name name) : sc_module (name), clk("Clk", period){
 void top::testbed(){
 	while(1){
 		char tmpA = rand()%256;
-		Aout->tmpA;
+		//*fsm->A = tmpA;
 
 	}
-
-
 }
 
 int sc_main (int argc , char *argv[])  {
 	srand(time(NULL));
 	top top1("Top1");
+	
   	
   	sc_start ();
 	return 0;
