@@ -4,6 +4,7 @@
 # define   	IF_H_
 
 class FSM_if : virtual public sc_interface {
+public:
 	virtual void fsm_functionality() = 0;
 };
 

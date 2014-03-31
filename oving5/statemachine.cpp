@@ -4,14 +4,16 @@ FSM::FSM(sc_module_name name, int _limit) : sc_module(name){
 	limit = _limit;
 	InitialState = S0;
 	CurrentState = InitialState;
+	Xtoggle = false;
 	SC_HAS_PROCESS(FSM);
 	SC_THREAD(fsm_functionality);
-	sensitive << tick;
+	sensitive << tick.pos();
 }
 
 
 void FSM::fsm_functionality() {
 	while(1){
+		int A = portA;
 		switch(CurrentState){
 			case S0:
 				cout << "In state S0. " << endl;
@@ -30,15 +32,18 @@ void FSM::fsm_functionality() {
 				}
 			break;
 			case S2:
-				cout << "In state S2. " << endl;
+				cout << "In state S2. " << "A = " << A << ".  And limit" << limit << endl;
 				if(A >= limit){
-					X->write(true);
+					cout << "Setting Xtoggle" << endl;
+					Xtoggle = !Xtoggle;
+					X->write(Xtoggle);
 					NextState = S0;
 				}else if(A < limit){
 					NextState = S0;
 				}
 			break;
 				default:
+				cout << "Default happend..................................................................." << endl;
 				NextState = S0;
 		}
 		CurrentState = NextState;
