@@ -27,7 +27,12 @@ top (sc_module_name name) : sc_module (name), clk("Clk", period){
 
 void top::testbed(){
 	while(1){
-		char tmpA = rand()%256;
+		int intA = rand()%256;
+		char charA = intA;
+		Aout.write(charA);
+		wait(pos(clk));
+		cout << "Writing " << charA << " to Aout, or " << intA << " in int." << endl;
+
 
 	}
 }
@@ -35,7 +40,8 @@ void top::testbed(){
 int sc_main (int argc , char *argv[])  {
 	srand(time(NULL));
 	top top1("Top1");
-	
+	//sc_clock clk("clk", 10, SC_NS);
+
   	
   	sc_start ();
 	return 0;

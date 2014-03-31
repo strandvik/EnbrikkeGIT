@@ -14,6 +14,7 @@ void FSM::fsm_functionality() {
 	while(1){
 		switch(CurrentState){
 			case S0:
+				cout << "In state S0. " << endl;
 				if(A >= limit){
 					NextState = S1;
 				}else{
@@ -21,7 +22,7 @@ void FSM::fsm_functionality() {
 				}
 			break;
 			case S1:
-
+				cout << "In state S1. " << endl;
 				if(A < limit){
 					NextState = S0;
 				}else{
@@ -29,6 +30,7 @@ void FSM::fsm_functionality() {
 				}
 			break;
 			case S2:
+				cout << "In state S2. " << endl;
 				if(A >= limit){
 					X->write(true);
 					NextState = S0;

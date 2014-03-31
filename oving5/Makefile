@@ -1,3 +1,4 @@
+export LD_LIBRARY_PATH=/usr/local/systemc230/lib-linux64:$LD_LIBRARY_PATH
 CC     = g++
 OPT    = -O3
 DEBUG  = -g
