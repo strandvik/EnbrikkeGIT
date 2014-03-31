@@ -28,7 +28,6 @@ top (sc_module_name name) : sc_module (name), clk("Clk", period){
 void top::testbed(){
 	while(1){
 		char tmpA = rand()%256;
-		//*fsm->A = tmpA;
 
 	}
 }
