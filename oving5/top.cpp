@@ -11,6 +11,7 @@ sc_clock clk;
 sc_signal<char> Aout;
 sc_signal<bool> Xin;
 int Xcount;
+int Acount;
 bool Xinput;
 //char sendA;
 void testbed();
@@ -22,6 +23,7 @@ top (sc_module_name name) : sc_module (name), clk("Clk", period){
 	fsm->X(Xin);
 
 	Xcount = 0;
+	Acount = 0;
 	Xinput = false;
 
 	SC_HAS_PROCESS(top);
@@ -34,11 +36,11 @@ void top::testbed(){
 		int intA = rand()%256;
 		unsigned char charA = intA;
 		Aout.write(charA);
-		
-		cout << "Writing " << charA << " to Aout, or " << intA << " in int." << endl;
+		Acount++;
 		if(Xin != Xinput){ 
 			Xcount++;
 			cout << "X was outputted " << Xin << ", " << Xcount << " number of times" << endl;
+			cout << "A was sent " << Acount << " times." << endl;
 		}
 		Xinput = Xin;
 		wait();
@@ -50,6 +52,6 @@ int sc_main (int argc , char *argv[])  {
 	top top1("Top1");
 
   	
-  	sc_start ();
+  	sc_start(1, SC_MS);
 	return 0;
 };

@@ -7,7 +7,7 @@ FSM::FSM(sc_module_name name, int _limit) : sc_module(name){
 	Xtoggle = false;
 	SC_HAS_PROCESS(FSM);
 	SC_THREAD(fsm_functionality);
-	sensitive << tick.pos();
+	sensitive << tick;
 }
 
 
@@ -16,11 +16,9 @@ void FSM::fsm_functionality() {
 		
 		unsigned char portReadA = portA.read();
 		int A = portReadA;
-		cout << "Reading port A to be " << portReadA << " converted to int " << A << endl;
 		switch(CurrentState){
 			case S0:
 				cout << "In state S0. " << endl;
-				cout << "Evaluating " << A << " against limit " << limit << endl;
 				if(A >= limit){
 					NextState = S1;
 				}else{
@@ -29,7 +27,6 @@ void FSM::fsm_functionality() {
 			break;
 			case S1:
 				cout << "In state S1. " << endl;
-				cout << "Evaluating " << A << " against limit " << limit << endl;
 				if(A < limit){
 					NextState = S0;
 				}else{
@@ -37,9 +34,8 @@ void FSM::fsm_functionality() {
 				}
 			break;
 			case S2:
-				cout << "In state S2. " << "A = " << A << ".  And limit" << limit << endl;
+				cout << "In state S2. " << endl;
 				if(A >= limit){
-					cout << "Setting Xtoggle" << endl;
 					Xtoggle = !Xtoggle;
 					X->write(Xtoggle);
 					NextState = S0;
@@ -52,6 +48,6 @@ void FSM::fsm_functionality() {
 				NextState = S0;
 		}
 		CurrentState = NextState;
-		wait(tick->posedge_event());
+		wait(tick.posedge_event());
 	}
 }
