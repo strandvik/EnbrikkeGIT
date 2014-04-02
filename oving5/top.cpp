@@ -17,7 +17,7 @@ bool Xinput;
 void testbed();
 
 top (sc_module_name name) : sc_module (name), clk("Clk", period){
-	fsm = new FSM("Statemachine", 100);
+	fsm = new FSM("Statemachine", 100); //Creating a new state machine with limit = 100.
 	fsm->tick(clk);
 	fsm->portA(Aout);
 	fsm->X(Xin);

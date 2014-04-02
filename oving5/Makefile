@@ -14,7 +14,7 @@ all: run.x
 
 statemachine.o: if.h statemachine.h statemachine.cpp
 
-topp.o: if.h statemachine.h top.cpp
+top.o: if.h statemachine.h top.cpp
 
 ifneq (, $(realpath $(HOME)/systemc/Makefile.defs))
 include ~/systemc/Makefile.defs
