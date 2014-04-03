@@ -51,8 +51,7 @@ void FSM::fsm_functionality() {
 					NextState = S0;
 			}
 		}
-	CurrentState = NextState;
-	//wait(tick.posedge_event());
-	cout << "Updated state to "<< CurrentState << endl << endl;	
+		CurrentState = NextState;
+		cout << "Updated state to "<< CurrentState << endl << endl;	
 	}	
 }
