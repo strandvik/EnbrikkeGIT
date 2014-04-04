@@ -1,7 +1,6 @@
 #include <systemc.h>
-
 #include "if.h"
-#include "statemachine.h"
+#include "statemachine.h"  
 
 const sc_time period (10, SC_NS);
 class top : public sc_module{
@@ -13,11 +12,10 @@ sc_signal<bool> Xin;
 int Xcount;
 int Acount;
 bool Xinput;
-//char sendA;
 void testbed();
 
 top (sc_module_name name) : sc_module (name), clk("Clk", period){
-	fsm = new FSM("Statemachine", 100); //Creating a new state machine with limit = 100.
+	fsm = new FSM("Statemachine", 100, 200); //Creating a new state machine with limit = 100.
 	fsm->tick(clk);
 	fsm->portA(Aout);
 	fsm->X(Xin);
@@ -28,7 +26,7 @@ top (sc_module_name name) : sc_module (name), clk("Clk", period){
 
 	SC_HAS_PROCESS(top);
 	SC_CTHREAD(testbed, clk);
-}
+	}
 };
 
 void top::testbed(){
@@ -36,7 +34,6 @@ void top::testbed(){
 		int intA = rand()%256;
 		unsigned char charA = intA;
 		Aout.write(charA);
-		cout << "Writing A to input: " << charA << ", or as int: " << intA << endl;
 		Acount++;
 		if(Xin != Xinput){ 
 			Xcount++;
@@ -51,8 +48,6 @@ void top::testbed(){
 int sc_main (int argc , char *argv[])  {
 	srand(time(NULL));
 	top top1("Top1");
-
-  	
   	sc_start(100, SC_US);
 	return 0;
 };

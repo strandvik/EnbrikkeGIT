@@ -7,12 +7,12 @@ OTHER  = -Wno-deprecated -fpermissive
 CFLAGS = $(DEBUG) $(OTHER)
 
 MODULE = run
-SRCS = statemachine.cpp top.cpp
+SRCS = statemachine4.cpp top.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: run.x
 
-statemachine.o: if.h statemachine.h statemachine.cpp
+statemachine.o: if.h statemachine.h statemachine4.cpp
 
 top.o: if.h statemachine.h top.cpp
 
